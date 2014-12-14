@@ -1,2 +1,1 @@
-tournament_mgr
-==============
+Simple Sinatra template that includes database configuration and some user auth code. Deploys to Heroku.
