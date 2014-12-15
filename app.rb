@@ -3,6 +3,10 @@ require 'sinatra/activerecord'
 
 #Don't forget to add database name in config/database.yml
 require_relative './models/user.rb'
+require_relative './models/match.rb'
+require_relative './models/player.rb'
+require_relative './models/tournament.rb'
+require_relative './models/pool.rb'
 require_relative './config/environments'
 
 enable :sessions
@@ -22,6 +26,12 @@ before do
   @current_user = User.find_by(id: session[:user_id])
 end
 
+before "/user/*" do
+  unless current_user?
+    @errors << "Please sign up or log in."
+    redirect "/"
+  end
+end
 
 get '/' do
 	erb :index
@@ -35,10 +45,10 @@ post '/signup' do
 	user = User.new(params)
   if user.save
     session[:user_id] = user.id
-    redirect('/users')
+    redirect('/user')
   else
     @user = user
-    erb :sign_up
+    erb :signup
   end
 end
 
@@ -50,7 +60,7 @@ post '/login' do
 	user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect('/users')
+    redirect('/user')
   else
     @errors << "Invalid email or password. Try again!"
     erb :login
@@ -58,6 +68,25 @@ post '/login' do
 end
 
 get '/logout' do
-	session.clear
-	redirect('/')
+  session.clear
+  redirect('/')
 end
+
+get "/user" do
+  if @current_user.tournaments
+    @tournaments = Tournament.where(user_id: session[:user_id])
+  else
+    @tournaments = []
+  end
+  erb :user
+end
+
+post "/user" do
+  Tournament.create(name: params[:name], user_id: session[:user_id])
+  redirect "/user"
+end
+
+get "/user/:tournnament_id"
+
+
+

@@ -1,0 +1,13 @@
+<h1>Start new tournament</h1>
+<form action="/user" method="post">
+  <input type="text" name="name" placeholder="Tournament Name">
+  <input type="submit" name="Create Tournament">
+</form>
+
+<h1>Current Tournaments</h1>
+
+<ul>
+  <%@tournaments.each do |tournament| %>
+    <li><%=tournament.name %></li>
+  <% end %>
+</ul>
