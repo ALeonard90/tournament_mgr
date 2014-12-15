@@ -142,6 +142,52 @@ delete "/user/player/:player_id" do
   redirect "/user/tournament/#{session[:tournament_id]}"
 end
 
+get "/user/tournament/:tournament_id/pools" do
+  @tournament = Tournament.find(params["tournament_id"])
+
+  if @tournament.pools
+    @pools = @tournament.pools
+  else
+    @pools = []
+  end
+
+  erb :user_tournament_pools
+end
+
+post "/user/tournament/:tournament_id/pools" do
+  pool = Pool.new(
+    name: params[:name],
+    gender: params[:gender],
+    rank: params[:rank],
+    min_weight: params[:min_weight],
+    max_weight: params[:max_weight],
+    min_age: params[:min_age],
+    max_age: params[:max_age]
+    )
+  pool.tournament = Tournament.find(params["tournament_id"])
+  pool.save
+
+  redirect "/user/tournament/#{params["tournament_id"]}/pools"
+end
+
+get "/user/tournament/:tournament_id/pools/:pool_id" do
+  @tournament = Tournament.find(params["tournament_id"])
+  @pool = Pool.find(params["pool_id"])
+
+  erb :user_tournament_pool
+end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,8 +4,11 @@ class CreatePool < ActiveRecord::Migration
     create_table :pools do |t|
       t.string :name, null: false
       t.string :gender
-      t.integer :low_weight
-      t.integer :high_weight
+      t.string :rank
+      t.integer :min_age
+      t.integer :max_age
+      t.integer :min_weight
+      t.integer :max_weight
       t.belongs_to :tournament
     end
 

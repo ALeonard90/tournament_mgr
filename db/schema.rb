@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20141215173218) do
     t.integer "weight",        null: false
     t.integer "age",           null: false
     t.string  "gender",        null: false
-    t.string  "rank"
+    t.string  "rank",          null: false
     t.integer "tournament_id"
     t.integer "pool_id"
   end
@@ -42,8 +42,11 @@ ActiveRecord::Schema.define(version: 20141215173218) do
   create_table "pools", force: true do |t|
     t.string  "name",          null: false
     t.string  "gender"
-    t.integer "low_weight"
-    t.integer "high_weight"
+    t.string  "rank"
+    t.integer "min_age"
+    t.integer "max_age"
+    t.integer "min_weight"
+    t.integer "max_weight"
     t.integer "tournament_id"
   end
 

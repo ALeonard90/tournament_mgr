@@ -1,0 +1,25 @@
+<h2>Create Pool:</h2>
+<form action="/user/tournament/<%=@tournament.id%>/pools" method="post">
+  <input type="text" name="name" placeholder="Name">
+  <select name="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+  </select>
+  <select name="rank">
+    <option value="novice">Novice</option>
+    <option value="advanced">Advanced</option>
+  </select>
+  <input type="number" name="min_age" placeholder="Minimum Age">
+  <input type="number" name="max_age" placeholder="Maximum Age">
+  <input type="number" name="min_weight" placeholder="Minimum Weight">
+  <input type="number" name="max_weight" placeholder="Maximum Weight">
+  <input type="submit" value="Create Pool">
+</form>
+
+<h2>Current Pools:</h2>
+
+<ul>
+  <%@pools.each do |pool|%>
+    <li><a href="/user/tournament/<%=@tournament.id%>/pools/<%=pool.id%>"><%=pool.name%></a></li>
+  <%end%>
+</ul>

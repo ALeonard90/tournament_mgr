@@ -1,0 +1,29 @@
+<h2>Edit Pool Parameters:</h2>
+<form action="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>" method="post">
+  <input type="text" name="name" placeholder="Name" value=<%=@pool.name%>>
+  <select name="gender">
+    <%if @pool.gender == "male" %>
+      <option value="male" selected="selected">Male</option>
+      <option value="female">Female</option>
+    <%else%>
+      <option value="male">Male</option>
+      <option value="female" selected="selected">Female</option>
+    <%end%>
+  </select>
+  <%if @pool.rank == "novice" %>
+    <select name="rank">
+      <option value="novice" selected="selected">Novice</option>
+      <option value="advanced">Advanced</option>
+    </select>
+  <%else%>
+    <select name="rank">
+      <option value="novice">Novice</option>
+      <option value="advanced" selected="selected">Advanced</option>
+    </select>
+  <%end%>    
+  <input type="number" name="min_age" placeholder="Minimum Age" value=<%=@pool.min_age%>>
+  <input type="number" name="max_age" placeholder="Maximum Age" value=<%=@pool.max_age%>>
+  <input type="number" name="min_weight" placeholder="Minimum Weight" value=<%=@pool.min_weight%>>
+  <input type="number" name="max_weight" placeholder="Maximum Weight" value=<%=@pool.max_weight%>>
+  <input type="submit" value="Create Pool">
+</form>
