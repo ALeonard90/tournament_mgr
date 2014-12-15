@@ -4,14 +4,48 @@ features
 
 -sign up and login as tournament manager (multiple users under the same id?)
   -create a tournament
-  -add player to a pool, based on weight & experience
-  -move players around between pools
+  -set pool parameters
+  -move players around between pools manually
+  -remove player from a tournament
   -view the bracket for different pools
   -declare one player the winner in each match
 
 -view a list of current tournaments
 -register for a tournament
 -view the various brackets for a tournament
+
+Done -
+sign up and login as manager
+create a tournament
+
+view list of current tournaments
+register for a tournament
+
+
+To Do - 
+
+set pool paramaters
+move players around between pools
+remove player from tournament
+update player information
+view bracket for pools
+declare a match winner
+
+Views:
+Exists -
+index - login, signup, view tournaments
+tournament (public) - register, view pools*
+user (private) - shows tournaments
+user_tournament (private) - shows players
+user_player - edit user info, delete player
+
+
+Need:
+user_all_pools - create pool, edit pool parameters
+user_tournament_pools - view bracket, enter match winner
+tournament_pools (public) - view bracket
+
+
 
 
 

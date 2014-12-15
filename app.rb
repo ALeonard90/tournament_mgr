@@ -88,6 +88,7 @@ post "/user" do
 end
 
 get "/user/tournament/:tournament_id" do
+  session[:tournament_id] = params["tournament_id"]
 
   @tournament = Tournament.find(params["tournament_id"]) #doesn't validate user
   
@@ -118,8 +119,28 @@ post "/tournament/:tournament_id" do
   redirect "/tournament/#{params["tournament_id"]}"
 end
 
+get "/user/player/:player_id" do
+  @player = Player.find(params["player_id"])
+  erb :user_player
+end
 
-  
+post "/user/player/:player_id" do
+  Player.update(
+    params["player_id"],
+    name: params[:name],
+    weight: params[:weight],    
+    age: params[:age],
+    gender: params[:gender],
+    rank: params[:rank],
+    )
+  redirect "/user/player/#{params["player_id"]}"
+end
+
+delete "/user/player/:player_id" do
+  Player.destroy(params["player_id"])
+
+  redirect "/user/tournament/#{session[:tournament_id]}"
+end
 
 
 
