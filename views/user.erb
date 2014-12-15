@@ -8,6 +8,6 @@
 
 <ul>
   <%@tournaments.each do |tournament| %>
-    <li><%=tournament.name %></li>
+    <a href="/user/tournament/<%=tournament.id%>"><li><%=tournament.name %></li></a>
   <% end %>
 </ul>

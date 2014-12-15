@@ -1,0 +1,11 @@
+<h1><%=@tournament.name%></h1>
+
+<h2><a href="/user/tournament/<%=@tournament.id%>/create_pool">Add a pool</a></h2>
+
+<h2>Competitors:</h2>
+
+<ul>
+  <%@players.each do |player| %>
+    <a href="/user/player/<%=player.id%>"><li><%=player.name %></li></a>
+  <% end %>
+</ul>

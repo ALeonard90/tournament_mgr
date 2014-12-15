@@ -34,6 +34,7 @@ before "/user/*" do
 end
 
 get '/' do
+  @tournaments = Tournament.all
 	erb :index
 end
 
@@ -86,7 +87,40 @@ post "/user" do
   redirect "/user"
 end
 
-get "/user/:tournnament_id"
+get "/user/tournament/:tournament_id" do
+
+  @tournament = Tournament.find(params["tournament_id"]) #doesn't validate user
+  
+  @players = Player.where(tournament_id: @tournament.id)
+  @players ||= []
+
+  erb :user_tournament
+
+end
+
+get "/tournament/:tournament_id" do
+  @tournament = Tournament.find(params["tournament_id"])
+
+  erb :tournament
+end
+
+post "/tournament/:tournament_id" do
+  player = Player.new(
+    name: params[:name],
+    weight: params[:weight],    
+    age: params[:age],
+    gender: params[:gender],
+    rank: params[:rank],
+    )
+  player.tournament = Tournament.find(params["tournament_id"])
+  player.save
+
+  redirect "/tournament/#{params["tournament_id"]}"
+end
+
+
+  
+
 
 
 

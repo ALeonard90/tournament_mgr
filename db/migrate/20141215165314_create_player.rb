@@ -7,7 +7,7 @@ class CreatePlayer < ActiveRecord::Migration
       t.integer :weight, null: false
       t.integer :age, null: false
       t.string :gender, null: false
-      t.string :rank
+      t.string :rank, null: false
       t.belongs_to :tournament
       t.belongs_to :pool
     end
