@@ -1,5 +1,5 @@
 configure :production, :development do
-	db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/db_name') #add db name
+	db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/tournament_db') #add db name
 
 	ActiveRecord::Base.establish_connection(
 		adapter: db.scheme == 'postgres' ? 'postgresql' : db.scheme,

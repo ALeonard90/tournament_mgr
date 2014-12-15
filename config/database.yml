@@ -1,4 +1,4 @@
 development:
   adapter: postgresql
   host: localhost
-  database: #enter DB name
+  database: tournament_db

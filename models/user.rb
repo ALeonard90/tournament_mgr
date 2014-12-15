@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   #associations
+  has_many :tournaments
 
   # callbacks
   before_save :encrypt_password

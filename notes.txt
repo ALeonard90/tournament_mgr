@@ -1,0 +1,43 @@
+hokay.
+
+features
+
+-sign up and login as tournament manager (multiple users under the same id?)
+  -create a tournament
+  -add player to a pool, based on weight & experience
+  -move players around between pools
+  -view the bracket for different pools
+  -declare one player the winner in each match
+
+-view a list of current tournaments
+-register for a tournament
+-view the various brackets for a tournament
+
+
+data & relationships
+
+user: name (probably a club name), email, password
+  -has_many: tournaments
+
+tournament: name, date, location
+  -belongs_to: user
+  -has_many: pools
+  -has_many: matches
+  -has_many: players
+
+pool: name, restrictions
+  -belongs_to: tournament
+  -has_many: players
+  -has_many: matches
+
+player: name, weight, rank (novice/advanced?)
+ -belongs_to: tournament
+ -belongs_to: pool
+ -has_many: matches
+
+match: player1, player2, winner, order within pool
+  -belongs_to: tournament
+  -belongs_to: pool
+  -has_many: players
+
+
