@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TournyMgr</title>
+</head>
+<body>
+  <nav>
+    <a href="/">All Tournaments</a> | 
+    <a href="/user">My Tournaments</a> | 
+    <a href="/signup">Sign Up</a> | 
+    <a href="/login">Log In</a> | 
+    <a href="/logout">Log Out</a>
+  </nav>
+
+  <% unless @errors.empty? %>
+      <ul>
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  
+  <%=yield%>
+
+</body>
+</html>

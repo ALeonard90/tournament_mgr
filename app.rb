@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
-#Don't forget to add database name in config/database.yml
+# Don't forget to add database name in config/database.yml
 require_relative './models/user.rb'
 require_relative './models/match.rb'
 require_relative './models/player.rb'
@@ -26,7 +26,7 @@ before do
   @current_user = User.find_by(id: session[:user_id])
 end
 
-before "/user/*" do
+before /user/ do
   unless current_user?
     @errors << "Please sign up or log in."
     redirect "/"
@@ -173,16 +173,43 @@ end
 get "/user/tournament/:tournament_id/pools/:pool_id" do
   @tournament = Tournament.find(params["tournament_id"])
   @pool = Pool.find(params["pool_id"])
-
+  @players = @pool.players
   erb :user_tournament_pool
 end
 
+post "/user/tournament/:tournament_id/pools/:pool_id" do
+  pool = Pool.update(
+    name: params[:name],
+    gender: params[:gender],
+    rank: params[:rank],
+    min_weight: params[:min_weight],
+    max_weight: params[:max_weight],
+    min_age: params[:min_age],
+    max_age: params[:max_age]
+    )
 
+redirect "/user/tournament/#{params["tournament_id"]}/pools/#{params["pool_id"]}"
+end
 
+delete "/user/tournament/:tournament_id/pools/:pool_id" do
+  Player.destroy(params["pool_id"])
 
+  redirect "/user/tournament/#{params["tournament_id"]}/pools"
+end
 
+get "/user/tournament/:tournament_id/pool_players" do
+  @players = Player.where(tournament_id: params["tournament_id"])
 
+  @players.each do |player|
+    unless player.add_to_pool
+      @errors << "No pool available for #{player.name}"
+    else
+      player.save
+    end
+  end
 
+  redirect "/user/tournament/#{params["tournament_id"]}/pools"
+end
 
 
 
