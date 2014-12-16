@@ -11,17 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215173218) do
+ActiveRecord::Schema.define(version: 20141216205439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "matches", force: true do |t|
-    t.string  "type",    null: false
-    t.integer "number",  null: false
+    t.string  "match_type", null: false
+    t.integer "number",     null: false
     t.integer "winner"
     t.integer "loser"
     t.integer "pool_id"
+  end
+
+  create_table "player_matches", force: true do |t|
+    t.integer "player_id"
+    t.integer "match_id"
   end
 
   create_table "players", force: true do |t|
@@ -32,11 +37,6 @@ ActiveRecord::Schema.define(version: 20141215173218) do
     t.string  "rank",          null: false
     t.integer "tournament_id"
     t.integer "pool_id"
-  end
-
-  create_table "players_matches", force: true do |t|
-    t.integer "player_id"
-    t.integer "match_id"
   end
 
   create_table "pools", force: true do |t|

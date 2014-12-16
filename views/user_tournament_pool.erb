@@ -44,6 +44,17 @@
   <% end %>
 </ul>
 
+<a href="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>/create_bracket">Create Bracket (Deletes all current matches)</a>
+
+<h2>Bracket:</h2>
+
+<% @matches.each do |match| %>
+  <ul>
+    <% match.players.each do |player| %>
+      <li><%=player.name%></li>
+    <% end %>
+  </ul>
+<% end %>
 
 
 

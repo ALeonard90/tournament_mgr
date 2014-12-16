@@ -5,8 +5,8 @@ class Player < ActiveRecord::Base
 
   belongs_to :tournament
   belongs_to :pool
-  has_many :players_matches
-  has_many :matches, through: :players_matches
+  has_many :player_matches
+  has_many :matches, through: :player_matches
   
   def add_to_pool
     pool = Pool.where(

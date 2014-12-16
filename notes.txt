@@ -17,17 +17,18 @@ features
 Done -
 sign up and login as manager
 create a tournament
+set pool paramaters
+automatically pool contestants
+remove player from tournament
+update player information
+
 
 view list of current tournaments
 register for a tournament
 
 
 To Do - 
-
-set pool paramaters
-move players around between pools
-remove player from tournament
-update player information
+generate bracket for pools
 view bracket for pools
 declare a match winner
 
@@ -38,11 +39,11 @@ tournament (public) - register, view pools*
 user (private) - shows tournaments
 user_tournament (private) - shows players
 user_player - edit user info, delete player
+user_all_pools - create pool, edit pool parameters
+user_tournament_pools - view bracket, enter match winner
 
 
 Need:
-user_all_pools - create pool, edit pool parameters
-user_tournament_pools - view bracket, enter match winner
 tournament_pools (public) - view bracket
 
 

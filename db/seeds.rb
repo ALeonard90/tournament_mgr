@@ -17,7 +17,8 @@ Tournament.create([
   {name: "Capitol Grapple", user_id: 1}
 ])
 
-Player.create(
+Player.create([ 
+  {name: "Bye", weight: 1, age: 1, gender: "rocket ship", rank: "8,999"},
   {name: "Alice", weight: 55, age: 20, gender: "female", rank: "advanced", tournament_id: 1},
   {name: "Becky", weight: 55, age: 20, gender: "female", rank: "advanced", tournament_id: 1},
   {name: "Chelsea", weight: 55, age: 20, gender: "female", rank: "advanced", tournament_id: 1},

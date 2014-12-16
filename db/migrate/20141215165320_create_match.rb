@@ -1,7 +1,7 @@
 class CreateMatch < ActiveRecord::Migration
   def change
     create_table :matches do |t|
-      t.string :type, null: false
+      t.string :match_type, null: false
       t.integer :number, null: false
       t.integer :winner
       t.integer :loser
