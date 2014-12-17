@@ -31,4 +31,62 @@ class Pool < ActiveRecord::Base
     end
   end
 
+  def next_match(last_match)
+    case last_match.match_type
+    when "W"
+      if self.check_open_matches("W")
+        PlayerMatch.create(match_id: self.check_open_matches("W"), player_id: last_match.winner)
+      else
+        new_match = Match.create(match_type: "W", number: self.get_next_match_num("W"))
+        PlayerMatch.create(match_id: new_match.id, player_id: last_match.winner)
+      end
+      last_match.loser == 1 ? break : true
+      if self.check_open_matches("L")
+        PlayerMatch.create(match_id: self.check_open_matches("L"), player_id: last_match.loser)
+      else
+        new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"))
+        PlayerMatch.create(match_id: new_match.id, player_id: last_match.loser)
+      end
+    when "L"
+      if self.check_open_matches("L")
+        PlayerMatch.create(match_id: self.check_open_matches("L"), player_id: last_match.winner)
+      else
+        new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"))
+        PlayerMatch.create(match_id: new_match.id, player_id: last_match.winner)
+      end
+    end
+  end
+
+  def check_open_matches(match_type)
+    self.matches.each do |match|
+      if match.match_type == match_type && match.players.length == 1
+        open_match = match
+        return open_match.id
+      else
+        return false
+      end 
+    end
+  end
+
+  def get_next_match_num(match_type)
+    match_numbers = []
+    self.matches.each do |match|
+      if match.match_type == match_type
+        match_numbers << match.number
+      end
+    end
+    return match_numbers.sort.pop + 1
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+

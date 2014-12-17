@@ -211,7 +211,7 @@ get "/user/tournament/:tournament_id/pools/:pool_id/create_bracket" do
   redirect "/user/tournament/#{params["tournament_id"]}/pools/#{params["pool_id"]}"   
 end
 
-post "/user/tournament/:tournament_id/pools/:pool_id" do
+patch "/user/tournament/:tournament_id/pools/:pool_id" do
   pool = Pool.update(
     name: params[:name],
     gender: params[:gender],
@@ -223,6 +223,10 @@ post "/user/tournament/:tournament_id/pools/:pool_id" do
     )
 
   redirect "/user/tournament/#{params["tournament_id"]}/pools/#{params["pool_id"]}"
+end
+
+get "/user/tournament/:tournament_id/pools/:pool_id/match_winner/:match_id/:player_id" do
+  
 end
 
 delete "/user/tournament/:tournament_id/pools/:pool_id" do

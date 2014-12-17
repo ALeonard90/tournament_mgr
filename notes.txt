@@ -21,6 +21,8 @@ set pool paramaters
 automatically pool contestants
 remove player from tournament
 update player information
+generate bracket for pools
+view bracket for pools
 
 
 view list of current tournaments
@@ -28,9 +30,12 @@ register for a tournament
 
 
 To Do - 
-generate bracket for pools
-view bracket for pools
 declare a match winner
+
+views
+validations
+fix user thingy (ensure tournament access)
+
 
 Views:
 Exists -

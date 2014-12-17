@@ -2,6 +2,7 @@
 
 <h2>Edit Pool Parameters:</h2>
 <form action="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
   <input type="text" name="name" placeholder="Name" value="<%=@pool.name%>">
   <select name="gender">
     <%if @pool.gender == "male" %>
@@ -51,7 +52,7 @@
 <% @matches.each do |match| %>
   <ul>
     <% match.players.each do |player| %>
-      <li><%=player.name%></li>
+      <a href="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>/match_winner/<%=match.id%>/<%=player.id%>"><li><%=player.name%></li></a>
     <% end %>
   </ul>
 <% end %>
