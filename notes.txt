@@ -23,19 +23,19 @@ remove player from tournament
 update player information
 generate bracket for pools
 view bracket for pools
+declare a match winner
+fix user thingy (ensure tournament access)
 
 
 view list of current tournaments
 register for a tournament
-
+view tournament pool
 
 To Do - 
-declare a match winner
-
-views
 validations
-fix user thingy (ensure tournament access)
-
+get error to display
+destroy relationship for player-matches
+styling
 
 Views:
 Exists -
