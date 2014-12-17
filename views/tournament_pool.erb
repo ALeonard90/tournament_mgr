@@ -1,0 +1,28 @@
+<h1><%=@pool.name%></h1>
+
+<h2>Competitors:</h2>
+<ul>
+  <% @players.each do |player| %>
+    <li><%=player.name%></li>
+  <% end %>
+</ul>
+
+<h2>Bracket:</h2>
+
+<% @winner_matches.each do |match| %>
+  <h3><%=match.match_type%><%=match.number%></h3>
+  <ul>
+    <% match.players.each do |player| %>
+     <li><%=player.name%></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% @loser_matches.each do |match| %>
+  <h3><%=match.match_type%><%=match.number%></h3>
+  <ul>
+    <% match.players.each do |player| %>
+      <li><%=player.name%></li>
+    <% end %>
+  </ul>
+<% end %>

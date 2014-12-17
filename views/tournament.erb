@@ -16,3 +16,12 @@
   </select>
   <input type="submit">
 </form>
+
+<h2>Current Pools:</h2>
+
+<ul>
+  <%@pools.each do |pool|%>
+    <li><a href="/tournament/<%=@tournament.id%>/pools/<%=pool.id%>"><%=pool.name%></a></li>
+  <%end%>
+</ul>
+

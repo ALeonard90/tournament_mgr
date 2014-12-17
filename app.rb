@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
-# Don't forget to add database name in config/database.yml
 require_relative './models/user.rb'
 require_relative './models/match.rb'
 require_relative './models/player.rb'
@@ -20,6 +19,10 @@ helpers do
   def current_user?
     @current_user == nil ? false : true
   end
+
+  def user_tournament?
+    Tournament.find_by(user_id: @current_user.id) == nil ? false : true
+  end
 end
 
 # Set current user
@@ -30,9 +33,16 @@ end
 
 # Check that user has access to page
 # Need to add verification that user has access to the tournament
-before /user/ do
+before "/user/*" do
   unless current_user?
     @errors << "Please sign up or log in."
+    redirect "/"
+  end
+end
+
+before "/user/tournament/*" do
+  unless user_tournament?
+    @errors << "Please log in as the tournament creator"
     redirect "/"
   end
 end
@@ -103,26 +113,6 @@ get "/user/tournament/:tournament_id" do
 
   erb :user_tournament
 
-end
-
-get "/tournament/:tournament_id" do
-  @tournament = Tournament.find(params["tournament_id"])
-
-  erb :tournament
-end
-
-post "/tournament/:tournament_id" do
-  player = Player.new(
-    name: params[:name],
-    weight: params[:weight],    
-    age: params[:age],
-    gender: params[:gender],
-    rank: params[:rank],
-    )
-  player.tournament = Tournament.find(params["tournament_id"])
-  player.save
-
-  redirect "/tournament/#{params["tournament_id"]}"
 end
 
 get "/user/player/:player_id" do
@@ -232,7 +222,7 @@ get "/user/tournament/:tournament_id/pools/:pool_id/match_winner/:match_id/:play
   @pool = Pool.find(params["pool_id"])
   @match = Match.find(params["match_id"])
 
-  @match.set_winner(params["player_id"])
+  @match.set_winner(params["player_id"].to_i)
   @pool.next_match(@match)
 
   redirect "/user/tournament/#{params["tournament_id"]}/pools/#{params["pool_id"]}"
@@ -244,10 +234,41 @@ delete "/user/tournament/:tournament_id/pools/:pool_id" do
   redirect "/user/tournament/#{params["tournament_id"]}/pools"
 end
 
+# Public Views
 
+get "/tournament/:tournament_id" do
+  @tournament = Tournament.find(params["tournament_id"])
+  @pools = @tournament.pools
 
+  erb :tournament
+end
 
+post "/tournament/:tournament_id" do
+  player = Player.new(
+    name: params[:name],
+    weight: params[:weight],    
+    age: params[:age],
+    gender: params[:gender],
+    rank: params[:rank],
+    )
+  player.tournament = Tournament.find(params["tournament_id"])
+  player.save
 
+  redirect "/tournament/#{params["tournament_id"]}"
+end
 
+get "/tournament/:tournament_id/pools/:pool_id" do
+  @tournament = Tournament.find(params["tournament_id"])
+  @pool = Pool.find(params["pool_id"])
+  @players = @pool.players
+  unless @pool.matches
+    @matches = []
+  else
+    @matches = @pool.matches.order(:number)
+  end
 
+  @winner_matches = @matches.select {|match| match.match_type == "W"}
+  @loser_matches = @matches.select {|match| match.match_type == "L"}
 
+  erb :tournament_pool
+end

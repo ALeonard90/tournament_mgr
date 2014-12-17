@@ -46,10 +46,10 @@ user_tournament (private) - shows players
 user_player - edit user info, delete player
 user_all_pools - create pool, edit pool parameters
 user_tournament_pools - view bracket, enter match winner
+tournament_pools (public) - view bracket
 
 
 Need:
-tournament_pools (public) - view bracket
 
 
 

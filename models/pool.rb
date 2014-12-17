@@ -40,7 +40,7 @@ class Pool < ActiveRecord::Base
         new_match = Match.create(match_type: "W", number: self.get_next_match_num("W"), pool_id: self.id)
         PlayerMatch.create(match_id: new_match.id, player_id: last_match.winner)
       end
-      if self.check_open_matches("L") && last_match.loser != 1
+      if self.check_open_matches("L") && last_match.loser.to_i != 1
         PlayerMatch.create(match_id: self.check_open_matches("L"), player_id: last_match.loser)
       else
         new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"), pool_id: self.id)
@@ -61,10 +61,9 @@ class Pool < ActiveRecord::Base
       if match.match_type == match_type && match.players.length == 1
         open_match = match
         return open_match.id
-      else
-        return false
-      end 
+      end
     end
+    return false
   end
 
   def get_next_match_num(match_type)
@@ -78,14 +77,3 @@ class Pool < ActiveRecord::Base
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
