@@ -37,21 +37,20 @@ class Pool < ActiveRecord::Base
       if self.check_open_matches("W")
         PlayerMatch.create(match_id: self.check_open_matches("W"), player_id: last_match.winner)
       else
-        new_match = Match.create(match_type: "W", number: self.get_next_match_num("W"))
+        new_match = Match.create(match_type: "W", number: self.get_next_match_num("W"), pool_id: self.id)
         PlayerMatch.create(match_id: new_match.id, player_id: last_match.winner)
       end
-      last_match.loser == 1 ? break : true
-      if self.check_open_matches("L")
+      if self.check_open_matches("L") && last_match.loser != 1
         PlayerMatch.create(match_id: self.check_open_matches("L"), player_id: last_match.loser)
       else
-        new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"))
+        new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"), pool_id: self.id)
         PlayerMatch.create(match_id: new_match.id, player_id: last_match.loser)
       end
     when "L"
       if self.check_open_matches("L")
         PlayerMatch.create(match_id: self.check_open_matches("L"), player_id: last_match.winner)
       else
-        new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"))
+        new_match = Match.create(match_type: "L", number: self.get_next_match_num("L"), pool_id: self.id)
         PlayerMatch.create(match_id: new_match.id, player_id: last_match.winner)
       end
     end
@@ -69,7 +68,7 @@ class Pool < ActiveRecord::Base
   end
 
   def get_next_match_num(match_type)
-    match_numbers = []
+    match_numbers = [0]
     self.matches.each do |match|
       if match.match_type == match_type
         match_numbers << match.number

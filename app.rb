@@ -197,8 +197,11 @@ get "/user/tournament/:tournament_id/pools/:pool_id" do
   unless @pool.matches
     @matches = []
   else
-    @matches = @pool.matches
+    @matches = @pool.matches.order(:number)
   end
+
+  @winner_matches = @matches.select {|match| match.match_type == "W"}
+  @loser_matches = @matches.select {|match| match.match_type == "L"}
 
   erb :user_tournament_pool
 end
@@ -226,7 +229,13 @@ patch "/user/tournament/:tournament_id/pools/:pool_id" do
 end
 
 get "/user/tournament/:tournament_id/pools/:pool_id/match_winner/:match_id/:player_id" do
-  
+  @pool = Pool.find(params["pool_id"])
+  @match = Match.find(params["match_id"])
+
+  @match.set_winner(params["player_id"])
+  @pool.next_match(@match)
+
+  redirect "/user/tournament/#{params["tournament_id"]}/pools/#{params["pool_id"]}"
 end
 
 delete "/user/tournament/:tournament_id/pools/:pool_id" do
