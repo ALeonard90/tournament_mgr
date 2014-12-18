@@ -9,25 +9,38 @@
 
 <h3>Bracket:</h3>
 <section class="bracket">
-<div class="winner">
+
+<div class="winner clearfix">
 <% @winner_matches.each do |match| %>
+  <% if @winning_round_start.include?(match.number) %>
+    <div class="round">
+  <% end %>
   <h3><%=match.match_type%><%=match.number%></h3>
   <ul>
     <% match.players.each do |player| %>
      <li><%=player.name%></li>
     <% end %>
   </ul>
+  <% if @winning_round_start.include?(match.number + 1) %>
+    </div>
+  <% end %>
 <% end %>
 </div>
 
 <div class="loser">
 <% @loser_matches.each do |match| %>
+  <% if @losing_round_start.include?(match.number) %>
+    <div class="round">
+  <% end %>
   <h3><%=match.match_type%><%=match.number%></h3>
   <ul>
     <% match.players.each do |player| %>
       <li><%=player.name%></li>
     <% end %>
   </ul>
+  <% if @losing_round_start.include?(match.number + 1) %>
+    </div>
+  <% end %>
 <% end %>
 </div>
 </section>

@@ -1,3 +1,9 @@
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
 body {
   width: 1000px;
   margin: auto;
@@ -101,4 +107,20 @@ ul {
 
 .pool_list a {
   color: white;
+}
+
+.loser {
+  clear: both;
+}
+
+.winner, .loser {
+  height: 200px;
+}
+
+.round {
+  float: left;
+  margin: auto 5px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }

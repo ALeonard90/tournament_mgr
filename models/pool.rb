@@ -1,5 +1,6 @@
 require_relative "../config/environments.rb"
 require_relative "./player_match.rb"
+require_relative "./player.rb"
 
 class Pool < ActiveRecord::Base
   belongs_to :tournament
@@ -10,8 +11,8 @@ class Pool < ActiveRecord::Base
     players = self.players
     i = 1
     
-    until Math.sqrt(players.length) % 1 == 0
-      players.insert(i, Player.find(1))
+    until Math.log2(players.length) % 1 == 0
+      players.insert(i, Player.find_by(name: "Bye"))
       i += 2
     end
 
