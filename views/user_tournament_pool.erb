@@ -50,7 +50,6 @@
 <h2>Bracket:</h2>
 
 <div class="winner">
-  <%= @winning_round_start %>
 <% @winner_matches.each do |match| %>
   <% if @winning_round_start.include?(match.number) %>
     <div class="round">
@@ -68,7 +67,6 @@
 </div>
 
 <div class="loser">
-  <%= @losing_round_start %>
 <% @loser_matches.each do |match| %>
   <% if @losing_round_start.include?(match.number) %>
     <div class="round">

@@ -12,7 +12,8 @@ class Pool < ActiveRecord::Base
     i = 1
     
     until Math.log2(players.length) % 1 == 0
-      players.insert(i, Player.find_by(name: "Bye"))
+      p = Player.find_by(name: "Bye")
+      players.insert(i, p)
       i += 2
     end
 
