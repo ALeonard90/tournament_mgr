@@ -1,10 +1,10 @@
 <h1><%=@pool.name%></h1>
 
-<h3>Edit Pool Parameters:</h3>
+<h2>Edit Pool Parameters:</h2>
 <form action="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label>Name: </label>
-  <input type="text" name="name" placeholder="Name" value="<%=@pool.name%>">
+  <input type="text" name="name" placeholder="Name" value="<%=@pool.name%>"><br>
   <label>Gender: </label>
   <select name="gender">
     <%if @pool.gender == "male" %>
@@ -14,45 +14,45 @@
       <option value="male">Male</option>
       <option value="female" selected="selected">Female</option>
     <%end%>
-  </select>
+  </select><br>
   <label>Rank: </label>
   <%if @pool.rank == "novice" %>
     <select name="rank">
       <option value="novice" selected="selected">Novice</option>
       <option value="advanced">Advanced</option>
-    </select>
+    </select><br>
   <%else%>
     <select name="rank">
       <option value="novice">Novice</option>
       <option value="advanced" selected="selected">Advanced</option>
-    </select>
+    </select><br>
   <%end%>
   <label>Minimum Age: </label>    
-  <input type="number" name="min_age" placeholder="Minimum Age" value=<%=@pool.min_age%>>
+  <input type="number" name="min_age" value=<%=@pool.min_age%>><br>
   <label>Maximum Age: </label>
-  <input type="number" name="max_age" placeholder="Maximum Age" value=<%=@pool.max_age%>>
+  <input type="number" name="max_age" value=<%=@pool.max_age%>><br>
   <label>Minimum Weight: </label>
-  <input type="number" name="min_weight" placeholder="Minimum Weight" value=<%=@pool.min_weight%>>
+  <input type="number" name="min_weight" value=<%=@pool.min_weight%>><br>
   <label>Maximum Weight:</label>
-  <input type="number" name="max_weight" placeholder="Maximum Weight" value=<%=@pool.max_weight%>>
+  <input type="number" name="max_weight" value=<%=@pool.max_weight%>><br>
   <input type="submit" value="Edit Pool">
 </form>
 
 
-<h3>Delete Pool:</h3>
+<h2>Delete Pool:</h2>
 <form action="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Pool">
 </form>
 
-<h2>Competitors:</h2>
+<h3>Competitors:</h3>
 <ul>
   <% @players.each do |player| %>
     <li><%=player.name%></li>
   <% end %>
 </ul>
 
-<a href="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>/create_bracket">Create Bracket (Deletes all current matches)</a>
+<a href="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>/create_bracket"><h2>Create Bracket (Deletes all current matches)</h2></a>
 
 <h2>Bracket:</h2>
 

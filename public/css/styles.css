@@ -45,18 +45,22 @@ input {
   text-align: center;
   font-size: 1em;
   margin: 10px auto;
+}
+
+.block_form {
   display: block;
 }
 
 select {
-  display: block;
   margin: 10px auto;
 }
+
 input[type=submit] {
   padding: 5px 10px;
   background-color: #004B8D;
   color: white;
   border:none;
+  display: block;
 }
 input[type=number] {
   width: 40px;
