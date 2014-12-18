@@ -1,6 +1,6 @@
 <h1><%=@pool.name%></h1>
 
-<h2>Edit Pool Parameters:</h2>
+<h3>Edit Pool Parameters:</h3>
 <form action="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="text" name="name" placeholder="Name" value="<%=@pool.name%>">
@@ -32,7 +32,7 @@
 </form>
 
 
-<h2>Delete Pool:</h2>
+<h3>Delete Pool:</h3>
 <form action="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Pool">
