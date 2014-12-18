@@ -9,6 +9,7 @@
 
 <h2>Bracket:</h2>
 
+<div class="winner">
 <% @winner_matches.each do |match| %>
   <h3><%=match.match_type%><%=match.number%></h3>
   <ul>
@@ -17,7 +18,9 @@
     <% end %>
   </ul>
 <% end %>
+</div>
 
+<div class="loser">
 <% @loser_matches.each do |match| %>
   <h3><%=match.match_type%><%=match.number%></h3>
   <ul>
@@ -26,3 +29,4 @@
     <% end %>
   </ul>
 <% end %>
+</div>
