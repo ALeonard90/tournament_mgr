@@ -1,7 +1,7 @@
 
 <h1>Current Tournaments</h1>
 
-<ul>
+<ul class="tournament_list">
   <%@tournaments.each do |tournament| %>
     <a href="/tournament/<%=tournament.id%>"><li><%=tournament.name %></li></a>
   <% end %>

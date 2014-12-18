@@ -1,10 +1,104 @@
 body {
   width: 1000px;
   margin: auto;
+  font-family: Arial, sans-serif;
 }
 
+nav {
+  text-align: center;
+  margin:20px auto;
+}
 
+nav a {
+  padding:10px 15px;
+  color: white;
+  background-color: #FB4800;
+}
 
 h1 {
   text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+h2 a {
+  padding: 10px 15px;
+  color: white;
+  background-color: #F00001;
+  font-weight: normal;
+}
+
+form {
+  text-align: center;
+}
+input {
+  text-align: center;
+  font-size: 1em;
+  margin: 10px auto;
+  display: block;
+}
+
+select {
+  display: block;
+  margin: 10px auto;
+}
+input[type=submit] {
+  padding: 5px 10px;
+  background-color: #004B8D;
+  color: white;
+  border:none;
+}
+input[type=number] {
+  width: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.tournament_list {
+  list-style-type: none;
+  list-style-position: inside;
+  text-align: center;
+  padding: 0px;
+}
+
+.tournament_list li {
+  padding: 10px;
+  background-color: #F00001;
+  color: white;
+  font-size: 1.5em;
+  width: 250px;
+  margin: 5px auto 5px auto;
+}
+
+.tournament_list a {
+  color: white;
+}
+
+.pool_list {
+  list-style-type: none;
+  list-style-position: inside;
+  text-align: center;
+  padding: 0px;
+}
+
+.pool_list li {
+  padding: 10px;
+  margin: 5px auto 5px auto;
+  width: 200px;
+  background-color: #004B8D;
+  color: white;
+}
+
+.pool_list a {
+  color: white;
 }

@@ -6,7 +6,7 @@
 
 <h1>Current Tournaments</h1>
 
-<ul>
+<ul class="tournament_list">
   <%@tournaments.each do |tournament| %>
     <a href="/user/tournament/<%=tournament.id%>"><li><%=tournament.name %></li></a>
   <% end %>

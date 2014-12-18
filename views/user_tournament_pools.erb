@@ -16,12 +16,12 @@
   <input type="submit" value="Create Pool">
 </form>
 
-<a href="/user/tournament/<%=@tournament.id%>/pool_players">Pool Players</a>
-
 <h2>Current Pools:</h2>
+<h2><a href="/user/tournament/<%=@tournament.id%>/pool_players">Automatically Pool Players</a></h2>
 
-<ul>
+<ul class="pool_list">
   <%@pools.each do |pool|%>
     <li><a href="/user/tournament/<%=@tournament.id%>/pools/<%=pool.id%>"><%=pool.name%></a></li>
   <%end%>
 </ul>
+  

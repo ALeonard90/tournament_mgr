@@ -33,7 +33,7 @@ end
 
 # Check that user has access to page
 # Need to add verification that user has access to the tournament
-before /user/ do
+before /user/  do
   unless current_user?
     @errors << "Please sign up or log in."
     redirect "/"

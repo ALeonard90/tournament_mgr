@@ -1,14 +1,14 @@
 <h1><%=@pool.name%></h1>
 
-<h2>Competitors:</h2>
+<h3>Competitors:</h3>
 <ul>
   <% @players.each do |player| %>
     <li><%=player.name%></li>
   <% end %>
 </ul>
 
-<h2>Bracket:</h2>
-
+<h3>Bracket:</h3>
+<section class="bracket">
 <div class="winner">
 <% @winner_matches.each do |match| %>
   <h3><%=match.match_type%><%=match.number%></h3>
@@ -30,3 +30,4 @@
   </ul>
 <% end %>
 </div>
+</section>
