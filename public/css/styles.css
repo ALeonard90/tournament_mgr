@@ -112,15 +112,11 @@ ul {
 .loser {
   clear: both;
 }
-
-.winner, .loser {
-  height: 200px;
+.winner {
+  position: relative;
 }
 
 .round {
   float: left;
   margin: auto 5px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }

@@ -190,6 +190,36 @@ get "/user/tournament/:tournament_id/pools/:pool_id" do
     @matches = @pool.matches.order(:number)
   end
 
+  @matches_per_round = @players.length / 2
+  
+  until Math.log2(@matches_per_round) % 1 == 0 || @matches_per_round == 2 do
+    @matches_per_round +=1
+  end
+
+  @start_matches = @matches_per_round
+  @num_win_matches = @matches_per_round
+
+  until @matches_per_round == 1 do
+    @matches_per_round /= 2
+    @num_win_matches += @matches_per_round
+  end
+
+  @winning_round_start = []
+
+  x = @num_win_matches
+  y = 2
+
+  until x == 1 do
+    @winning_round_start << x
+    x -= y
+    y = y**2
+  end
+
+  @winning_round_start << 1
+
+  @losing_round_start = @winning_round_start
+
+
   @winner_matches = @matches.select {|match| match.match_type == "W"}
   @loser_matches = @matches.select {|match| match.match_type == "L"}
 
@@ -273,6 +303,7 @@ get "/tournament/:tournament_id/pools/:pool_id" do
     @matches_per_round +=1
   end
 
+  @start_matches = @matches_per_round
   @num_win_matches = @matches_per_round
 
   until @matches_per_round == 1 do
@@ -293,7 +324,7 @@ get "/tournament/:tournament_id/pools/:pool_id" do
 
   @winning_round_start << 1
 
-  @losing_round_start = @winning_round_start[1, @winning_round_start.length - 1]
+  @losing_round_start = @winning_round_start
 
 
   @winner_matches = @matches.select {|match| match.match_type == "W"}

@@ -50,24 +50,38 @@
 <h2>Bracket:</h2>
 
 <div class="winner">
+  <%= @winning_round_start %>
 <% @winner_matches.each do |match| %>
+  <% if @winning_round_start.include?(match.number) %>
+    <div class="round">
+  <% end %>
   <h3><%=match.match_type%><%=match.number%></h3>
   <ul>
     <% match.players.each do |player| %>
       <a href="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>/match_winner/<%=match.id%>/<%=player.id%>"><li><%=player.name%></li></a>
     <% end %>
   </ul>
+  <% if @winning_round_start.include?(match.number + 1) %>
+    </div>
+  <% end %>
 <% end %>
 </div>
 
 <div class="loser">
+  <%= @losing_round_start %>
 <% @loser_matches.each do |match| %>
+  <% if @losing_round_start.include?(match.number) %>
+    <div class="round">
+  <% end %>
   <h3><%=match.match_type%><%=match.number%></h3>
   <ul>
     <% match.players.each do |player| %>
       <a href="/user/tournament/<%=@tournament.id%>/pools/<%=@pool.id%>/match_winner/<%=match.id%>/<%=player.id%>"><li><%=player.name%></li></a>
     <% end %>
   </ul>
+  <% if @losing_round_start.include?(match.number + 1) %>
+    </div>
+  <% end %>
 <% end %>
 </div>
 
