@@ -3,8 +3,23 @@ body {
   margin: auto;
 }
 
-
+nav {
+  text-align: center;
+}
 
 h1 {
   text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+.bracket {
+  text-align: right;
 }
