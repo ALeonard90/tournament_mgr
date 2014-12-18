@@ -1,17 +1,24 @@
 <h2>Create Pool:</h2>
 <form action="/user/tournament/<%=@tournament.id%>/pools" method="post">
+  <label>Name: </label>
   <input type="text" name="name" placeholder="Name">
+  <label>Gender: </label>
   <select name="gender">
       <option value="male">Male</option>
       <option value="female">Female</option>
   </select>
+  <label>Rank: </label>
   <select name="rank">
     <option value="novice">Novice</option>
     <option value="advanced">Advanced</option>
   </select>
+  <label>Minimum Age: </label>
   <input type="number" name="min_age" placeholder="Minimum Age">
+  <label>Maximum Age: </label>
   <input type="number" name="max_age" placeholder="Maximum Age">
+  <label>Minimum Weight: </label>
   <input type="number" name="min_weight" placeholder="Minimum Weight">
+  <label>Maximum Weight: </label>
   <input type="number" name="max_weight" placeholder="Maximum Weight">
   <input type="submit" value="Create Pool">
 </form>

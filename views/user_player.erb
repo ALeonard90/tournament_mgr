@@ -7,7 +7,9 @@
 
 <h2>Edit competitor info:</h2>
 <form action="/user/player/<%=@player.id%>" method="post">
+  <label>Name: </label>
   <input type="text" name="name" placeholder="Name" value=<%=@player.name%>>
+  <label>Gender: </label>
   <select name="gender">
     <%if @player.gender == "male" %>
       <option value="male" selected="selected">Male</option>
@@ -17,8 +19,11 @@
       <option value="female" selected="selected">Female</option>
     <%end%>
   </select>
+  <label>Age: </label>
   <input type="number" name="age" placeholder="Age" value=<%=@player.age%>>
+  <label>Weight: </label>
   <input type="number" name="weight" placeholder="Weight" value=<%=@player.weight%>>
+  <label>Rank: </label>
   <%if @player.rank == "novice" %>
     <select name="rank">
       <option value="novice" selected="selected">Novice</option>
